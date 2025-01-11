@@ -8,6 +8,8 @@ ecg_data = pd.read_csv("ECG.csv")
 # Set output path for saving plots
 output_path = "./"
 
+"""
+
 # Data Exploration
 print("Dataset shape:", ecg_data.shape)
 print("Missing values:\n", ecg_data.isnull().sum())
@@ -28,9 +30,15 @@ def plot_feature_distributions(data, output_path):
 
 plot_feature_distributions(ecg_data, output_path)
 
+"""
+
 # 2. Correlation Heatmap
 def plot_correlation_heatmap(data, output_path):
     print("Plotting correlation heatmap...")
+    # Ensure all columns are numeric
+    data = data.apply(pd.to_numeric, errors='coerce')
+    data.dropna(inplace=True)
+
     plt.figure(figsize=(12, 10))
     correlation_matrix = data.corr()
     sns.heatmap(correlation_matrix, annot=False, cmap="coolwarm", fmt=".2f")
@@ -41,6 +49,7 @@ def plot_correlation_heatmap(data, output_path):
 
 plot_correlation_heatmap(ecg_data, output_path)
 
+"""
 # 3. Time-Series Plot (if applicable)
 def plot_time_series(data, output_path):
     print("Plotting time-series plots...")
@@ -69,5 +78,5 @@ def plot_feature_boxplot(data, output_path):
     plt.close()
 
 plot_feature_boxplot(ecg_data, output_path)
-
+"""
 print("All plots have been saved to the folder.")
