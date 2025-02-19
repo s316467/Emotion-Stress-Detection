@@ -1,1 +1,0 @@
-Better use torchEEG with source data when available
